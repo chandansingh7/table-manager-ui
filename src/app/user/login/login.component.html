@@ -1,0 +1,20 @@
+<!-- src/app/pages/login/login.component.html -->
+<div class="login-container">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <h2>Login</h2>
+
+    <label>Email</label>
+    <input type="username" formControlName="username" />
+    <div class="error" *ngIf="form.get('username')?.invalid && form.get('username')?.touched">
+      Valid email is required.
+    </div>
+
+    <label>Password</label>
+    <input type="password" formControlName="password" />
+    <div class="error" *ngIf="form.get('password')?.invalid && form.get('password')?.touched">
+      Password is required.
+    </div>
+
+    <button type="submit" [disabled]="form.invalid">Login</button>
+  </form>
+</div>
