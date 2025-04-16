@@ -1,0 +1,29 @@
+<!-- navbar.component.html -->
+<nav class="navbar">
+  <div class="navbar-brand">Table Manager</div>
+
+  <div class="navbar-right" *ngIf="isLoggedIn; else guestLinks">
+    <div class="user-menu" (click)="toggleDropdown()" tabindex="0">
+      <mat-icon color="primary" class="small-icon">account_circle</mat-icon>
+      <div class="dropdown" *ngIf="dropdownOpen">
+        <a routerLink="/profile">Profile</a>
+        <a routerLink="/settings">Settings</a>
+        <a (click)="logout()">Logout</a>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #guestLinks>
+    <div class="navbar-links">
+      <a routerLink="/login" class="icon-link">
+        <mat-icon>login</mat-icon>
+        <span>Login</span>
+      </a>
+      <a routerLink="/register" class="icon-link">
+        <mat-icon>person_add</mat-icon>
+        <span>Register</span>
+      </a>
+    </div>
+  </ng-template>
+
+</nav>

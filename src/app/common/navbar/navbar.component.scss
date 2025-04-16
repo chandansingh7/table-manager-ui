@@ -1,0 +1,105 @@
+/* navbar.component.scss */
+.small-icon {
+  font-size: 30px;
+  height: 31px;
+  width: 30px;
+  line-height: 37px;
+}
+
+icon-link > mat-icon {
+  font-size: 30px;
+  height: 25px;
+  width: 30px;
+  line-height: 30px;
+}
+
+icon-link > mat-icon > span {
+  top: 0;
+  align-items: center;
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  z-index: 1000; /* Make sure it's above other content */
+  position: relative;
+}
+
+.icon-link {
+  display: flex;
+  align-items: center;
+  color: white;
+  text-decoration: none;
+  margin-left: 15px;
+  font-size: 16px;
+  position: relative;
+}
+
+.icon-link mat-icon {
+  margin-right: 8px;
+}
+
+.icon-link:hover {
+  color: #ffeb3b; /* Highlight color on hover */
+}
+
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #004080;
+  color: white;
+  padding: 10px 20px;
+
+  .navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  .navbar-links a,
+  .dropdown a {
+    color: white;
+    text-decoration: none;
+    margin-left: 15px;
+    font-weight: 500;
+  }
+
+  .navbar-right {
+    display: flex;
+    align-items: center;
+  }
+
+  .user-menu {
+    position: relative;
+    cursor: pointer;
+
+    .user-icon {
+      font-size: 32px;
+      color: white;
+    }
+
+    .dropdown {
+      position: absolute;
+      top: 40px;
+      right: 0;
+      background-color: #0059b3;
+      padding: 10px;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      z-index: 100;
+
+      a {
+        padding: 5px 10px;
+        color: white;
+
+        &:hover {
+          background-color: #003366;
+        }
+      }
+    }
+  }
+}
