@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {AuthService} from '../service/auth.service';
@@ -10,7 +10,7 @@ import {Router} from '@angular/router';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
   form!: FormGroup;
   private errorMsg: string | null = null;
@@ -20,9 +20,10 @@ export class LoginComponent {
               private router: Router) {}
 
   ngOnInit() {
-    if (this.authService.isLoggedIn()) {
-      this.router.navigate(['/dashboard']);
-    }
+    //
+    // if (this.authService.isLoggedIn()) {
+    //   this.router.navigate(['/dashboard']);
+    // }
 
     this.form = this.fb.group({
       username: ['', Validators.required],
@@ -34,7 +35,9 @@ export class LoginComponent {
     if (this.form.invalid) return;
 
     this.authService.login(this.form.value).subscribe({
-      next: () => this.router.navigate(['/dashboard']),
+      next: () =>
+        this.router.navigate(['/dashboard']
+        ),
       error: () => this.errorMsg = 'Invalid email or password'
     });
   }
