@@ -1,11 +1,11 @@
 import {Component, HostListener, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
+import {Router, RouterModule} from '@angular/router';
 import {CommonModule} from '@angular/common';
 import {MatIconModule} from '@angular/material/icon';
 
 @Component({
   selector: 'app-navbar',
-  imports: [CommonModule, MatIconModule],
+  imports: [CommonModule, MatIconModule, RouterModule],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
 })

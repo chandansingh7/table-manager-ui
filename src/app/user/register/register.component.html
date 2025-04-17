@@ -1,1 +1,24 @@
-<p>register works!</p>
+<div class="register-container">
+  <aside class="register-sidebar">
+    <h3>User Actions</h3>
+    <ul>
+      <li>
+        <a routerLink="/register/add-user">
+          <mat-icon>person_add</mat-icon>
+          Add User
+        </a>
+      </li>
+      <li>
+        <a routerLink="/register/list-user">
+          <mat-icon>format_list_bulleted</mat-icon>
+          List User
+        </a>
+      </li>
+    </ul>
+  </aside>
+
+  <main class="register-content">
+    <app-register-user (formSubmit)="onRegisterUser($event)"></app-register-user>
+<!--    <router-outlet></router-outlet>-->
+  </main>
+</div>
