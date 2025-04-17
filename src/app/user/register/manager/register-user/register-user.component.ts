@@ -9,6 +9,7 @@ import {UserRole} from '../../../models/role.enum';
 import {UserService} from '../../../service/user.service';
 import {Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {HttpErrorResponse} from '@angular/common/http';
 
 @Component({
   selector: 'app-register-user',
@@ -18,7 +19,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    ],
+  ],
   templateUrl: './register-user.component.html',
 
   styleUrl: './register-user.component.scss'
@@ -53,32 +54,19 @@ export class RegisterUserComponent {
       .toLowerCase()
       .replace(/^\w/, c => c.toUpperCase());
   }
-  errorMessage: string = '';  // To store the error message
-  successMessage: string = '';  // To store the success message
 
   onSubmit(): void {
     if (this.registerForm.valid) {
       const userData: User = this.registerForm.value;
 
       this.userService.registerUser(userData).subscribe({
-        next: response => {
-          this.snackBar.open('✅ Registration successful!', 'Close', {
-            duration: 4000,
-            panelClass: ['snackbar-success']
-          });
-          this.router.navigate(['/login']);
+        next: () => {
+          this.snackBar.open('Registration successful!', 'Close', {duration: 3000});
         },
-        error: error => {
-          this.snackBar.open(`❌ Registration failed: ${error.message}`, 'Close', {
-            duration: 5000,
-            panelClass: ['snackbar-error']
-          });
+        error: (error: HttpErrorResponse) => {
+          const errorMessage = error.error?.error || 'Registration failed. Try again.';
+          this.snackBar.open(errorMessage, 'Close', {duration: 3000});
         }
-      });
-    } else {
-      this.snackBar.open('⚠️ Please fill all the fields correctly.', 'Close', {
-        duration: 4000,
-        panelClass: ['snackbar-error']
       });
     }
   }

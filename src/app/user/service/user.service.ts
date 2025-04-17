@@ -16,21 +16,5 @@ export class UserService {
   // Method to register a user
   registerUser(user: User): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/register`, user)
-      .pipe(
-        catchError(this.handleError)
-      );
-  }
-
-  // Method to handle errors
-  private handleError(error: HttpErrorResponse) {
-    let errorMessage = 'Unknown error occurred!';
-    if (error.error instanceof ErrorEvent) {
-      // Client-side error
-      errorMessage = `Error: ${error.error.message}`;
-    } else {
-      // Server-side error
-      errorMessage = `Server returned code: ${error.status}, error message: ${error.message}`;
-    }
-    return throwError(() => new Error(errorMessage));
   }
 }
