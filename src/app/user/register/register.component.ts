@@ -13,8 +13,8 @@ import {CommonModule} from '@angular/common';
 })
 export class RegisterComponent {
 
-  onRegisterUser(userData: any) {
-    console.log('Registered user data: ', userData);
-    // Handle the registration logic (send the data to the backend, etc.)
-  }
+  // onRegisterUser(userData: any) {
+  //   console.log('Registered user data: ', userData);
+  //   // Handle the registration logic (send the data to the backend, etc.)
+  // }
 }
