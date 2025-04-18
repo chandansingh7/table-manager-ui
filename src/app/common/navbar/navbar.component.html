@@ -1,6 +1,7 @@
 <!-- navbar.component.html -->
 <nav class="navbar">
-  <div class="navbar-brand">Table Manager</div>
+  <div class="navbar-brand">
+    <a routerLink="/">Table Manager</a></div>
 
   <div class="navbar-right" *ngIf="isLoggedIn; else guestLinks">
     <div class="user-menu" (click)="toggleDropdown()" tabindex="0">

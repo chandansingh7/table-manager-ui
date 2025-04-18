@@ -1,0 +1,72 @@
+<div class="user-table-wrapper">
+  <mat-card class="user-table-card">
+
+    <!-- Toolbar Buttons -->
+    <div class="table-action-button" [class.hidden]="!selectedUser">
+      <button mat-raised-button color="primary" (click)="addUser()"><mat-icon>lock_reset</mat-icon>Password</button>
+      <button mat-raised-button color="primary" (click)="addUser()"><mat-icon>edit</mat-icon>Edit</button>
+      <button mat-raised-button color="warn" (click)="deleteUser()"><mat-icon>delete</mat-icon>Delete</button>
+    </div>
+
+    <!-- Scrollable Table Area -->
+    <div class="table-scroll-container">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <!-- Select Column -->
+        <ng-container matColumnDef="select">
+          <th mat-header-cell *matHeaderCellDef>
+            Select
+            <div><mat-icon>filter_alt</mat-icon></div>
+          </th>
+          <td mat-cell *matCellDef="let row; let i = index">
+            <mat-radio-group [(ngModel)]="selectedUser" (ngModelChange)="onSelectRow(row)">
+              <mat-radio-button [value]="row"></mat-radio-button>
+            </mat-radio-group>
+          </td>
+        </ng-container>
+
+        <!-- Username Column -->
+        <ng-container matColumnDef="username">
+          <th mat-header-cell *matHeaderCellDef>
+            <div>Username</div>
+            <div><input matInput #usernameInput placeholder="Filter Username" (keyup)="applyFilter('username', usernameInput.value)" class="filter-input" /></div>
+          </th>
+          <td mat-cell *matCellDef="let row"> {{ row.username }} </td>
+        </ng-container>
+
+        <!-- Email Column -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef>
+            <div>Email</div>
+            <div><input matInput #emailInput placeholder="Filter Email" (keyup)="applyFilter('email', emailInput.value)" class="filter-input" /></div>
+          </th>
+          <td mat-cell *matCellDef="let row"> {{ row.email }} </td>
+        </ng-container>
+
+        <!-- Role Column -->
+        <ng-container matColumnDef="role">
+          <th mat-header-cell *matHeaderCellDef>
+            <div>Role</div>
+            <div><input matInput #roleInput placeholder="Filter Role" (keyup)="applyFilter('role', roleInput.value)" class="filter-input" /></div>
+          </th>
+          <td mat-cell *matCellDef="let row"> {{ row.role }} </td>
+        </ng-container>
+
+        <!-- Table Row Definitions -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+            [class.selected]="selectedUser === row"
+            (click)="onSelectRow(row)">
+        </tr>
+      </table>
+    </div>
+
+    <!-- Paginator Outside Table Scroll -->
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 20]"
+      [pageSize]="5"
+      (page)="onPaginateChange($event)">
+    </mat-paginator>
+
+  </mat-card>
+</div>

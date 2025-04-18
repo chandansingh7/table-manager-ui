@@ -54,9 +54,12 @@
   color: white;
   padding: 10px 20px;
 
-  .navbar-brand {
+  .navbar-brand > a{
     font-size: 1.5rem;
     font-weight: bold;
+    text-decoration: none;
+    color: white;
+    //background-color: white;
   }
 
   .navbar-links a,

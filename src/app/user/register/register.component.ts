@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 import {RouterModule} from '@angular/router';
 import {MatIconModule} from '@angular/material/icon';
-
-import {RegisterUserComponent} from './manager/register-user/register-user.component';
 import {CommonModule} from '@angular/common';
+import {ListUsersComponent} from './manager/list-users/list-users.component';
 
 @Component({
   selector: 'app-register',
-  imports: [CommonModule, RouterModule, MatIconModule, RegisterUserComponent],
+  imports: [CommonModule, RouterModule, MatIconModule ],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
