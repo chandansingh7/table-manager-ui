@@ -13,7 +13,12 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { isPlatformBrowser } from '@angular/common';  // Import isPlatformBrowser
+
+import {EditUserDialogComponent} from './edit-user-dialog/edit-user-dialog.component';
+import {MatDialog} from '@angular/material/dialog';
+import {MatDialogModule} from '@angular/material/dialog';
+import {HttpErrorResponse} from '@angular/common/http';
+import {MatSnackBar} from '@angular/material/snack-bar';  // Import isPlatformBrowser
 
 @Component({
   selector: 'app-list-users',
@@ -30,7 +35,8 @@ import { isPlatformBrowser } from '@angular/common';  // Import isPlatformBrowse
     MatRadioModule,
     MatCheckboxModule,
     MatIconModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDialogModule
   ],
   templateUrl: './list-users.component.html',
   styleUrls: ['./list-users.component.scss']
@@ -47,9 +53,10 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
   userForm: FormGroup;
 
   constructor(
-    private userService: UserService,
-    private fb: FormBuilder,
-    @Inject(PLATFORM_ID) private platformId: Object
+    private readonly userService: UserService,
+    private readonly fb: FormBuilder,
+    private readonly dialog: MatDialog,
+    private readonly snackBar: MatSnackBar
   ) {
     this.userForm = this.fb.group({
       userSelection: new FormControl(null)
@@ -57,7 +64,7 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.getUsers();  // Fetch users from backend
+    this.getUsers();
   }
 
   ngAfterViewInit() {
@@ -68,6 +75,7 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
     this.userService.getUsers().subscribe(
       (users: User[]) => {
         this.users = users;
+        console.log(this.users)
         this.dataSource.data = this.users;
         this.dataSource.filterPredicate = this.customFilterPredicate();
 
@@ -79,18 +87,15 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
     );
   }
 
-  // Row Selection Handler for radio button
   onSelectRow(user: User): void {
     this.selectedUser = this.selectedUser === user ? null : user;
   }
 
-  // Apply Filter Logic
   applyFilter(column: string, value: string): void {
     this.filterValues[column] = value.trim().toLowerCase();
     this.dataSource.filter = JSON.stringify(this.filterValues);
   }
 
-  // Custom Filter Predicate
   customFilterPredicate() {
     return (data: User, filter: string): boolean => {
       const filters = JSON.parse(filter);
@@ -100,14 +105,32 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
     };
   }
 
-  // Handle Pagination Change
   onPaginateChange(event: any): void {
 
   }
 
-  // Add User Action (for now just an alert)
-  addUser(): void {
-    alert('Add User clicked');
+  editUser(user: User | null): void {
+    if (!user) return;
+    const dialogRef = this.dialog.open(EditUserDialogComponent, {
+      width: '500px',
+      panelClass: 'edit-user-dialog',
+      data: { ...user }
+    });
+
+    dialogRef.afterClosed().subscribe((updatedUser: User | undefined) => {
+      if (updatedUser) {
+        this.userService.updateUsers(updatedUser).subscribe({
+          next: () => {
+            this.getUsers();
+            this.snackBar.open('User Update successful!', 'Close', {duration: 3000});
+          },
+          error: (error: HttpErrorResponse) => {
+            const errorMessage = error.error?.error || 'Updating failed. Try again.';
+            this.snackBar.open(errorMessage, 'Close', {duration: 3000});
+          }
+        });
+      }
+    });
   }
 
   // Delete User Action (for now just an alert)
@@ -116,4 +139,5 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
       alert(`Delete user: ${this.selectedUser.username}`);
     }
   }
+
 }

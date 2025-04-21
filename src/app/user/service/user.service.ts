@@ -23,6 +23,10 @@ export class UserService {
   }
 
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(`${this.userUrl}/`); // Replace with actual API
+    return this.http.get<User[]>(`${this.userUrl}/`);
+  }
+
+  updateUsers(user: User): Observable<User> {
+    return this.http.patch<User>(`${this.userUrl}/${user.id}`, user);
   }
 }
