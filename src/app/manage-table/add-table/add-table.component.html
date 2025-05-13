@@ -1,0 +1,47 @@
+<form [formGroup]="registerTableForm" (ngSubmit)="onSubmit()" class="register-table-form-box">
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Table Number</mat-label>
+    <input matInput formControlName="tableNumber" type="number" />
+    <mat-error *ngIf="registerTableForm.get('tableNumber')?.hasError('required')">
+      Table Number is required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Capacity</mat-label>
+    <input matInput formControlName="capacity" type="number" />
+    <mat-error *ngIf="registerTableForm.get('capacity')?.hasError('required')">
+      Capacity is required
+    </mat-error>
+    <mat-error *ngIf="registerTableForm.get('capacity')?.hasError('capacity')">
+      Please enter a valid number
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Price/ Hrs.</mat-label>
+    <input matInput formControlName="pph" type="number" />
+    <mat-error *ngIf="registerTableForm.get('pph')?.hasError('required')">
+      Password is required
+    </mat-error>
+    <mat-error *ngIf="registerTableForm.get('pph')?.hasError('required')">
+      Price per hour is required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Status</mat-label>
+    <mat-select formControlName="status">
+      <mat-option *ngFor="let status of statuses" [value]="status.value">
+        {{ status.label }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="registerTableForm.get('status')?.hasError('required')">
+      Status is required
+    </mat-error>
+  </mat-form-field>
+
+  <button mat-raised-button type="submit" class="submit-button" [disabled]="registerTableForm.invalid">
+    Submit
+  </button>
+</form>

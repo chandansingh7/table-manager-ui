@@ -62,6 +62,12 @@ export class RegisterUserComponent {
       this.userService.registerUser(userData).subscribe({
         next: () => {
           this.snackBar.open('Registration successful!', 'Close', {duration: 3000});
+          this.registerForm.reset();
+          this.registerForm.clearValidators();
+          Object.values(this.registerForm.controls).forEach(ctrl => {
+            ctrl.clearValidators();                  // removes control-level validators
+            ctrl.updateValueAndValidity({ emitEvent: false });
+          });
         },
         error: (error: HttpErrorResponse) => {
           const errorMessage = error.error?.error || 'Registration failed. Try again.';

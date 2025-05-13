@@ -1,0 +1,29 @@
+<div class="register-container">
+  <aside class="register-sidebar">
+    <h3>Table Actions</h3>
+    <ul>
+      <li>
+        <a routerLink="/manage-table/table-stats">
+          <mat-icon>monitoring</mat-icon>
+            Table Stats
+        </a>
+      </li>
+      <li>
+        <a routerLink="/manage-table/add-table">
+          <mat-icon>add</mat-icon>
+          Add Table
+        </a>
+      </li>
+      <li>
+        <a routerLink="/manage-table/list-table">
+          <mat-icon>format_list_bulleted</mat-icon>
+          List Table
+        </a>
+      </li>
+    </ul>
+  </aside>
+
+  <main class="register-content">
+    <router-outlet></router-outlet>
+  </main>
+</div>

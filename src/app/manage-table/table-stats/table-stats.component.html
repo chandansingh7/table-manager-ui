@@ -1,0 +1,9 @@
+<div class="tile-grid">
+  <mat-card class="tile" *ngFor="let t of tiles" [ngClass]="t.color">
+    <mat-icon class="icon" [color]="t.color !== 'neutral' ? t.color : null">
+      {{ t.icon }}
+    </mat-icon>
+    <span class="label">{{ t.label }}</span>
+    <span class="count">{{ t.count }}</span>
+  </mat-card>
+</div>

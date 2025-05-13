@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs';
 import {StorageService} from './storage.service';
+import {environment} from '../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private baseUrl = 'http://localhost:8080/api/auth/public'; // adjust backend URL
+  private baseUrl = `${environment.apiUrl}/auth/public`; // adjust backend URL
 
   constructor(private readonly http: HttpClient,
               private readonly authLocalStorage: StorageService) {}

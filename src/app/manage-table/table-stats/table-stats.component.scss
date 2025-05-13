@@ -1,0 +1,37 @@
+/* table-stats.component.scss  ------------------------------------ */
+.tile-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+}
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;          /* ⬅ horizontal centre */
+  justify-content: center;      /* ⬅ vertical centre   */
+  padding: 1.2rem 0;            /* more breathing room */
+  min-height: 120px;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,.08);
+  text-align: center;
+}
+
+/* ‏——  colour classes (feel free to swap the hex codes) ———————— */
+.primary  { background: #1976d2; color:#fff; }  /* blue  */
+.accent   { background: #512da8; color:#fff; }  /* purple*/
+.warn     { background: #d32f2f; color:#fff; }  /* red   */
+.success     { background: #55915a; color:#fff; }  /* red   */
+.neutral  { background: #eceff1; color:#263238; }
+
+/* ‏——  icon / text tweaks ———————————————————————————————— */
+.icon  {
+  font-size: 48px;              /* make it larger       */
+  width: 48px; height: 48px;    /* fixes baseline shift */
+  line-height: 48px;
+  display: block;               /* occupies its own row */
+  margin-bottom: 6px;
+}
+
+.label { font-size: 1rem;   font-weight: 500; opacity: .85; }
+.count { font-size: 1.8rem; font-weight: 600; }
