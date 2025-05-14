@@ -2,9 +2,9 @@ import { Statuses} from './status.enum';
 
 export interface ReserveTable {
 
-  id?:string;
+  id?:number;
   tableNumber: number;
-  capacity: number;
+  capacity?: number;
   pph?: number;
   status?: Statuses;
 }

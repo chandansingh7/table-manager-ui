@@ -1,0 +1,29 @@
+<div class="register-container">
+  <aside class="register-sidebar">
+    <h3>Booking Actions</h3>
+    <ul>
+      <li>
+        <a routerLink="/manage-table/table-stats">
+          <mat-icon>monitoring</mat-icon>
+          Booking Stats
+        </a>
+      </li>
+      <li>
+        <a routerLink="/manage-table/add-table">
+          <mat-icon>add</mat-icon>
+          Booking
+        </a>
+      </li>
+      <li>
+        <a routerLink="/manage-table/list-table">
+          <mat-icon>format_list_bulleted</mat-icon>
+          List Booking
+        </a>
+      </li>
+    </ul>
+  </aside>
+
+  <main class="register-content">
+    <router-outlet></router-outlet>
+  </main>
+</div>

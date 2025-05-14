@@ -10,6 +10,8 @@ import {AddTableComponent} from './manage-table/add-table/add-table.component';
 import {ListTableComponent} from './manage-table/list-table/list-table.component';
 import {EditTableDialogComponent} from './manage-table/list-table/edit-table-dialog/edit-table-dialog.component';
 import {TableStatsComponent} from './manage-table/table-stats/table-stats.component';
+import {BookingComponent} from './booking/booking.component';
+import {AddBookingComponent} from './booking/add-booking/add-booking.component';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/login' },
@@ -46,6 +48,18 @@ export const routes: Routes = [
       { path: 'table-stats', component: TableStatsComponent },
       { path: 'edit-table/:id', component: EditTableDialogComponent },
       { path: '', redirectTo: 'table-stats', pathMatch: 'full' },
+    ],
+    canActivate: [authGuard],
+  },
+  {
+    path: 'booking',
+    component: BookingComponent,
+    children:[
+      { path: 'add-booking', component: AddBookingComponent },
+      // { path: 'list-table', component: ListTableComponent },
+      // { path: 'table-stats', component: TableStatsComponent },
+      // { path: 'edit-table/:id', component: EditTableDialogComponent },
+      { path: '', redirectTo: 'add-booking', pathMatch: 'full' }
     ],
     canActivate: [authGuard],
   }

@@ -41,9 +41,8 @@ export class TableStatsComponent implements OnInit{
 
   ngOnInit(): void {
     this.tableService.getCounts()
-      .pipe(take(1))                          // auto-unsubscribe
+      .pipe(take(1))
       .subscribe((c: TableCounts) => {
-        /* build the cards */
         this.tiles = [
           { label: 'Total Tables', icon: 'table_restaurant', color: 'neutral',  count: c.total     },
           { label: 'Available',    icon: 'check_circle',     color: 'primary',  count: c.available },
@@ -51,8 +50,6 @@ export class TableStatsComponent implements OnInit{
           { label: 'Occupied',      icon: 'eco',   color: 'success',  count: c.occupied   },
           { label: 'Closed',       icon: 'close',            color: 'warn',     count: c.closed    },
         ];
-
-        /* tell Angular to refresh if you use OnPush */
         this.cdr.markForCheck();
       });
   }
