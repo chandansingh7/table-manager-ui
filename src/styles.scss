@@ -1,4 +1,109 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+/* ──────────────────────────────────────────────────────────────────── */
+/* GLOBAL THEME OVERRIDES                                              */
+/* ──────────────────────────────────────────────────────────────────── */
+
+/* Light‐blue background on all outline-style mat-form-fields */
+.mat-form-field-appearance-outline .mat-form-field-infix {
+  background-color: #e3f2fd !important;
+  border-radius: 4px !important;
+}
+
+/* Native date & time inputs */
+input[type="date"],
+input[type="time"] {
+  background-color: #e3f2fd !important;
+  border-radius: 4px !important;
+  padding: 0.5rem !important;
+}
+
+/* ─ “Book Table” Pill‐Shaped Button ───────────────────────────────── */
+
+/* Full‐width, theme‐blue raised button */
+button.mat-raised-button[color="primary"] {
+  background-color: #1976d2 !important;
+  color: #fff !important;
+  border-radius: 24px !important;   /* pill shape */
+  width: 100% !important;
+  padding: 0.75rem 1.5rem !important;
+  text-transform: none !important;
+  font-weight: 500 !important;
+  transition: background-color 0.2s ease !important;
+}
+
+button.mat-raised-button[color="primary"]:hover {
+  background-color: #115293 !important;
+}
+
+/* ─ Tables in .panel Cards ────────────────────────────────────────── */
+
+/* Ensure mat-tables and rows are pure white */
+.panel .mat-table,
+.panel .mat-header-row,
+.panel .mat-row {
+  background: #fff !important;
+}
+
+/* Subtle divider under header row */
+.panel .mat-header-row {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12) !important;
+}
+
+/* ─ Circular Action Icon‐Buttons ──────────────────────────────────── */
+
+/* Base circle size for all icon-buttons in tables */
+table button.mat-icon-button {
+  width: 40px !important;
+  height: 40px !important;
+  min-width: 40px !important;
+  padding: 0 !important;
+  margin: 0 4px !important;
+  border-radius: 50% !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: background-color 0.2s ease !important;
+}
+
+/* Blue for check-in/check-out */
+table button.mat-icon-button[color="primary"],
+table button.mat-icon-button[color="accent"] {
+  background-color: #1976d2 !important;
+  color: #fff !important;
+}
+
+table button.mat-icon-button[color="primary"]:hover,
+table button.mat-icon-button[color="accent"]:hover {
+  background-color: #63a4ff !important;
+}
+
+/* Red for cancel */
+table button.mat-icon-button[color="warn"] {
+  background-color: #d32f2f !important;
+  color: #fff !important;
+}
+
+table button.mat-icon-button[color="warn"]:hover {
+  background-color: #f55a4e !important;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-infix {
+  background-color: #e3f2fd !important;
+  border-radius: 4px !important;
+}
+
+/* Also target the actual <input> inside the infix */
+.mat-input-element {
+  background-color: #e3f2fd !important;
+  border-radius: 4px !important;
+  padding: 0.5rem !important;
+}
